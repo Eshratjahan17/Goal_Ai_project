@@ -13,6 +13,8 @@ const Login = () => {
   console.log(watch("example"));
   return (
     <div className="flex items-center justify-center flex-col h-screen ">
+      <h1 className="text-4xl font-bold pb-5">Log In!</h1>
+      
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         <div>
@@ -26,13 +28,11 @@ const Login = () => {
               className="input input-bordered w-full "
               {...register("email", { required: true })}
             />
-            <label className="label">
-              <span className="label-text-alt">Bottom Left label</span>
-            </label>
+            
           </div>
         </div>
         <div>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-96 ">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
@@ -40,17 +40,17 @@ const Login = () => {
               required
               type="email"
               placeholder="Password here"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-96"
               {...register("password", { required: true })}
             />
-            <label className="label">
-              <span className="label-text-alt">Bottom Left label</span>
-            </label>
+            
           </div>
         </div>
 
-        <input type="submit" />
+        <input type="submit" className="btn-primary w-full mt-4 p-2 rounded-lg w-96 " />
       </form>
+      <div className="divider w-96 mx-auto">Or</div> 
+     <button>Continue With Google</button>
     </div>
   );
 };
