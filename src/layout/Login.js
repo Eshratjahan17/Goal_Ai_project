@@ -1,5 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import googleImage from "../Assets/Google.svg.png";
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth  from "../firebase.init";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -8,13 +12,18 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const navigate=useNavigate();
+  
   const onSubmit = (data) => console.log(data);
-
-  console.log(watch("example"));
+if (user){
+  console.log(user);
+  navigate("/dasboard");
+}
   return (
     <div className="flex items-center justify-center flex-col h-screen ">
       <h1 className="text-4xl font-bold pb-5">Log In!</h1>
-      
+
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         <div>
@@ -28,7 +37,6 @@ const Login = () => {
               className="input input-bordered w-full "
               {...register("email", { required: true })}
             />
-            
           </div>
         </div>
         <div>
@@ -43,14 +51,21 @@ const Login = () => {
               className="input input-bordered w-96"
               {...register("password", { required: true })}
             />
-            
           </div>
         </div>
 
-        <input type="submit" className="btn-primary w-full mt-4 p-2 rounded-lg w-96 " />
+        <input
+          type="submit"
+          className="btn-primary w-full mt-4 p-2 rounded-lg w-96 text-white "
+        />
       </form>
-      <div className="divider w-96 mx-auto">Or</div> 
-     <button>Continue With Google</button>
+      <div className="divider w-96 mx-auto">Or</div>
+      <button className="btn-secondary p-3 rounded-lg flex items-center justify-center "
+      onClick={() => signInWithGoogle()}
+      >
+        <img className="w-6 h-6 mr-2" src={googleImage}></img>
+        <p className="font-bold">Continue With Google</p>
+      </button>
     </div>
   );
 };
