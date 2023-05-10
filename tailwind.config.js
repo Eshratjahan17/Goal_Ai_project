@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'login-pattern': "url('/src/Assets/bg.png')",
+        'footer-texture': "url('/img/footer-texture.png')",
+      }
+    }
   },
   plugins: [require("daisyui")],
   daisyui: {

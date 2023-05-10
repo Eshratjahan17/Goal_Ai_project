@@ -10,7 +10,7 @@ function App() {
       element:<Login></Login>
     },
     {
-      path:'/dasboard',
+      path:'/dashboard',
       element:<Dashboard></Dashboard>
     }
   ])
