@@ -1,15 +1,16 @@
 import './App.css';
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
-import Login from './layout/Login';
+
 
 import DashboardLayout from './layout/Dashboard/DashboardLayout';
 import Chatbot from './layout/Dashboard/Chatbot';
+import Main from './layout/Main';
 
 function App() {
   const router=createBrowserRouter([
     {
       path:'/',
-      element:<Login></Login>
+      element:<Main></Main>
     },
     {
       path:'/dashboard',
