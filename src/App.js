@@ -5,6 +5,7 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import DashboardLayout from './layout/Dashboard/DashboardLayout';
 import Chatbot from './layout/Dashboard/Chatbot';
 import Main from './layout/Main';
+import DashBoardHome from './layout/Dashboard/DashBoardHome';
 
 function App() {
   const router=createBrowserRouter([
@@ -17,8 +18,13 @@ function App() {
       element:<DashboardLayout></DashboardLayout>,
       children: [
         {
-          path: "chatbot",
-          element: <Chatbot />,
+          path: "/dashboard",
+          element: <DashBoardHome></DashBoardHome>,
+        
+        },
+        {
+          path: "/dashboard/chatbot",
+          element: <Chatbot></Chatbot>,
         
         },
         
