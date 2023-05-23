@@ -6,12 +6,12 @@ const Chatbot = () => {
       <h1 className="text-2xl font-bold text-primary text-center py-10 ">
         SJI Chatbot
       </h1>
-      <div className="form-control ml-20 ">
-        <div className="input-group ">
+      <div className="form-control  ">
+        <div className="input-group justify-center  ">
           <input
             type="text"
             placeholder="Search…"
-            className="input input-bordered w-10/12  "
+            className="input input-bordered w-1/2  "
           />
           <button className="btn btn-square">
             <svg
@@ -33,12 +33,12 @@ const Chatbot = () => {
       </div>
       <div>
         <div className="chat chat-start w-full">
-          <div className="chat-bubble w-8/12 mx-10 my-5 ">
+          <div className="chat-bubble w-1/2 ml-64 my-5 ">
             It's over Anakin, <br />I have the high ground.
           </div>
         </div>
         <div className="chat chat-end  ">
-          <div className="chat-bubble w-8/12 mx-10 my-5 bg-red-200">
+          <div className="chat-bubble w-1/2 mr-64 my-5 bg-red-200">
             You underestimate my power!
           </div>
         </div>

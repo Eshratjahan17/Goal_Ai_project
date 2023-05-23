@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import googleImage from "../Assets/Google.svg.png";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import auth  from "../firebase.init";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 
@@ -14,33 +14,29 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-  const [
-    signInWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useSignInWithEmailAndPassword(auth);
-  const navigate=useNavigate();
-  
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password)
-    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
+    console.log(user);
+    navigate("/dashboard");
+  };
+  if (googleUser || user) {
+    console.log(googleUser);
     navigate("/dashboard");
   }
-if (googleUser || user){
-  console.log(googleUser );
-  navigate("/dashboard");
-}
-if(googleLoading||loading){
-  return <Loading></Loading>
-}
+  if (googleLoading || loading) {
+    return <Loading></Loading>;
+  }
 
   return (
-    <div className="flex items-center justify-center flex-col h-screen bg-[url('/src/Assets/bg.png')]  bg-cover" >
-     
+    <div className="flex items-center justify-center flex-col h-screen bg-[url('/src/Assets/bg.png')]  bg-cover">
       <h1 className="text-4xl font-bold pb-5">Log In!</h1>
-      <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
         <div>
           <div className="form-control  ">
@@ -53,14 +49,13 @@ if(googleLoading||loading){
               className="input input-bordered  "
               {...register("email", { required: true })}
             />
-             <label class="label">
-                    {errors.email?.type === "required" && (
-                      <span class="label-text-alt text-red-500">
-                        {errors.email.message}
-                      </span>
-                    )}
-                    
-                  </label>
+            <label class="label">
+              {errors.email?.type === "required" && (
+                <span class="label-text-alt text-red-500">
+                  {errors.email.message}
+                </span>
+              )}
+            </label>
           </div>
         </div>
         <div>
@@ -84,20 +79,21 @@ if(googleLoading||loading){
         />
       </form>
       <div className="divider w-96 mx-auto">Or</div>
-      <button className="btn-secondary p-3 rounded-lg flex items-center justify-center "
-      onClick={() => signInWithGoogle()}
+      <button
+        className="btn-secondary p-3 rounded-lg flex items-center justify-center "
+        onClick={() => signInWithGoogle()}
       >
         <img alt="Google-logo" className="w-6 h-6 mr-2" src={googleImage}></img>
         <p className="font-bold">Continue With Google</p>
       </button>
       <label>
-      {error ? ( <span class="label-text-alt text-red-500"> {error}</span>)
-                : 
-                (<span class="label-text-alt text-red-500"></span>)}
+        {error ? (
+          <span class="label-text-alt text-red-500"> {error}</span>
+        ) : (
+          <span class="label-text-alt text-red-500"></span>
+        )}
       </label>
-      </div>
-      
-   
+    </div>
   );
 };
 

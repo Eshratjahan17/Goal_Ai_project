@@ -1,22 +1,34 @@
 import React from "react";
 
-import Dashboard from "./Dashboard";
 import Topbar from "../Shared/Topbar";
 import DashBoardHome from "./DashBoardHome";
 import Chatbot from "./Chatbot";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "../Loading";
 
 const DashboardLayout = () => {
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+  if (loading) {
+    return <Loading></Loading>;
+  }
+  const handleSignOut = () => {
+    signOut(auth);
+    console.log("logged out ", user);
+  };
   return (
     <div>
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center bg-secondary">
+        <div className="drawer-content flex flex-col items-center justify-center bg-secondary md:pt-96 md:pb-14">
           <Outlet></Outlet>
 
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn btn-primary drawer-button lg:hidden md:absolute md:top-0 md:right-0  "
           >
             Open drawer
           </label>
@@ -33,7 +45,7 @@ const DashboardLayout = () => {
               <Link to="/dashboard/chatbot"> Chatbot </Link>
             </li>
             <li>
-              <a> Logout </a>
+              <a onClick={handleSignOut}>Logout</a>
             </li>
           </ul>
         </div>

@@ -9,7 +9,7 @@ import CircleChart from "./CircleChart";
 const DashBoardHome = () => {
   return (
     <div>
-      <div className="flex">
+      <div className="flex md:flex-wrap sm:flex-wrap lg:flex-nowrap">
         <div className="bg-accent w-80 h-56 mx-3 pt-5 rounded-xl">
           <img className=" w-20 h-20 mx-auto my-3" src={android}></img>
           <h1 className="text-4xl font-bold text-center text-blue-900 ">
@@ -37,7 +37,7 @@ const DashBoardHome = () => {
           <p className=" text-center ">Bug Reports</p>
         </div>
       </div>
-      <div className="flex py-7  mx-3">
+      <div className="flex md:flex-wrap sm:flex-wrap lg:flex-nowrap py-7  mx-3">
         <div className="bg-white shadow-lg p-6 mr-4  rounded-xl ">
           <h1 className="text-lg font-bold ">Website Visits</h1>
           <p className="pb-5">(+43%) than last year</p>
